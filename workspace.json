@@ -28,7 +28,9 @@
       "targets": {
         "build": {
           "executor": "@nrwl/web:build",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/user-support-app",
             "index": "apps/user-support-app/src/index.html",
@@ -39,7 +41,9 @@
               "apps/user-support-app/src/favicon.ico",
               "apps/user-support-app/src/assets"
             ],
-            "styles": ["apps/user-support-app/src/styles.scss"],
+            "styles": [
+              "apps/user-support-app/src/styles.scss"
+            ],
             "scripts": [],
             "webpackConfig": "@nrwl/react/plugins/webpack"
           },
@@ -71,7 +75,8 @@
         "serve": {
           "executor": "@nrwl/web:dev-server",
           "options": {
-            "buildTarget": "user-support-app:build"
+            "buildTarget": "user-support-app:build",
+            "proxyConfig": "proxy.config.json"
           },
           "configurations": {
             "production": {
@@ -82,12 +87,16 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/user-support-app/**/*.{ts,tsx,js,jsx}"]
+            "lintFilePatterns": [
+              "apps/user-support-app/**/*.{ts,tsx,js,jsx}"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/user-support-app"],
+          "outputs": [
+            "coverage/apps/user-support-app"
+          ],
           "options": {
             "jestConfig": "apps/user-support-app/jest.config.js",
             "passWithNoTests": true
@@ -116,7 +125,9 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/user-support-app-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/user-support-app-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
