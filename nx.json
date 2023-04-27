@@ -18,17 +18,24 @@
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"]
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e"
+        ]
       }
     }
   },
   "projects": {
-    "user-support-app": {
+    "validation-rule-creator": {
       "tags": []
     },
-    "user-support-app-e2e": {
+    "validation-rule-creator-e2e": {
       "tags": [],
-      "implicitDependencies": ["user-support-app"]
+      "implicitDependencies": [
+        "validation-rule-creator"
+      ]
     }
   }
 }
