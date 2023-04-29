@@ -5,7 +5,7 @@
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
       "parserOptions": {
-        "project": ["apps/user-support-app/tsconfig.*?.json"]
+        "project": ["apps/validation-rule-creator/tsconfig.*?.json"]
       },
       "rules": {}
     },

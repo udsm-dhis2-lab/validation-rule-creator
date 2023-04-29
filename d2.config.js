@@ -2,7 +2,7 @@ const config = {
   type: 'app',
 
   entryPoints: {
-    app: './apps/user-support-app/src/app/app.tsx',
+    app: './apps/validation-rule-creator/src/app/app.tsx',
   },
 };
 

@@ -3,7 +3,7 @@
   "cli": {
     "defaultCollection": "@nrwl/react"
   },
-  "defaultProject": "user-support-app",
+  "defaultProject": "validation-rule-creator",
   "generators": {
     "@nrwl/react": {
       "application": {
@@ -21,9 +21,9 @@
     }
   },
   "projects": {
-    "user-support-app": {
-      "root": "apps/user-support-app",
-      "sourceRoot": "apps/user-support-app/src",
+    "validation-rule-creator": {
+      "root": "apps/validation-rule-creator",
+      "sourceRoot": "apps/validation-rule-creator/src",
       "projectType": "application",
       "targets": {
         "build": {
@@ -32,17 +32,17 @@
             "{options.outputPath}"
           ],
           "options": {
-            "outputPath": "dist/apps/user-support-app",
-            "index": "apps/user-support-app/src/index.html",
-            "main": "apps/user-support-app/src/main.tsx",
-            "polyfills": "apps/user-support-app/src/polyfills.ts",
-            "tsConfig": "apps/user-support-app/tsconfig.app.json",
+            "outputPath": "dist/apps/validation-rule-creator",
+            "index": "apps/validation-rule-creator/src/index.html",
+            "main": "apps/validation-rule-creator/src/main.tsx",
+            "polyfills": "apps/validation-rule-creator/src/polyfills.ts",
+            "tsConfig": "apps/validation-rule-creator/tsconfig.app.json",
             "assets": [
-              "apps/user-support-app/src/favicon.ico",
-              "apps/user-support-app/src/assets"
+              "apps/validation-rule-creator/src/favicon.ico",
+              "apps/validation-rule-creator/src/assets"
             ],
             "styles": [
-              "apps/user-support-app/src/styles.scss"
+              "apps/validation-rule-creator/src/styles.scss"
             ],
             "scripts": [],
             "webpackConfig": "@nrwl/react/plugins/webpack"
@@ -51,8 +51,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "apps/user-support-app/src/environments/environment.ts",
-                  "with": "apps/user-support-app/src/environments/environment.prod.ts"
+                  "replace": "apps/validation-rule-creator/src/environments/environment.ts",
+                  "with": "apps/validation-rule-creator/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -75,12 +75,12 @@
         "serve": {
           "executor": "@nrwl/web:dev-server",
           "options": {
-            "buildTarget": "user-support-app:build",
+            "buildTarget": "validation-rule-creator:build",
             "proxyConfig": "proxy.config.json"
           },
           "configurations": {
             "production": {
-              "buildTarget": "user-support-app:build:production"
+              "buildTarget": "validation-rule-creator:build:production"
             }
           }
         },
@@ -88,37 +88,37 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "apps/user-support-app/**/*.{ts,tsx,js,jsx}"
+              "apps/validation-rule-creator/**/*.{ts,tsx,js,jsx}"
             ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
           "outputs": [
-            "coverage/apps/user-support-app"
+            "coverage/apps/validation-rule-creator"
           ],
           "options": {
-            "jestConfig": "apps/user-support-app/jest.config.js",
+            "jestConfig": "apps/validation-rule-creator/jest.config.js",
             "passWithNoTests": true
           }
         }
       }
     },
-    "user-support-app-e2e": {
-      "root": "apps/user-support-app-e2e",
-      "sourceRoot": "apps/user-support-app-e2e/src",
+    "validation-rule-creator-e2e": {
+      "root": "apps/validation-rule-creator-e2e",
+      "sourceRoot": "apps/validation-rule-creator-e2e/src",
       "projectType": "application",
       "targets": {
         "e2e": {
           "executor": "@nrwl/cypress:cypress",
           "options": {
-            "cypressConfig": "apps/user-support-app-e2e/cypress.json",
-            "tsConfig": "apps/user-support-app-e2e/tsconfig.e2e.json",
-            "devServerTarget": "user-support-app:serve"
+            "cypressConfig": "apps/validation-rule-creator-e2e/cypress.json",
+            "tsConfig": "apps/validation-rule-creator-e2e/tsconfig.e2e.json",
+            "devServerTarget": "validation-rule-creator:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "user-support-app:serve:production"
+              "devServerTarget": "validation-rule-creator:serve:production"
             }
           }
         },
@@ -126,7 +126,7 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "apps/user-support-app-e2e/**/*.{js,ts}"
+              "apps/validation-rule-creator-e2e/**/*.{js,ts}"
             ]
           }
         }

@@ -13,6 +13,6 @@ describe('App', () => {
   it('should have a greeting as the title', () => {
     const { getByText } = render(<App />);
 
-    expect(getByText('Welcome to user-support-app!')).toBeTruthy();
+    expect(getByText('Welcome to validation-rule-creator!')).toBeTruthy();
   });
 });

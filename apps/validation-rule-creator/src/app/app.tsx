@@ -2,8 +2,8 @@ import { DataProvider, DataQuery } from '@dhis2/app-runtime';
 import i18n from '@dhis2/d2-i18n';
 import React from 'react';
 
-import styles from './app.module.scss';
-import UserCreation from './user-creation/user-creation';
+import styles from './app.module.css';
+import { List } from './modules';
 
 const query = {
   me: {
@@ -19,13 +19,7 @@ const App = () => (
           const me: any = data?.me;
           if (error) return <span>ERROR</span>;
           if (loading) return <span>...</span>;
-          return (
-            <>
-              <h1>{i18n.t('Hello {{name}}', { name: me?.name })}</h1>
-              <h3>{i18n.t('Welcome to DHIS2!')}</h3>
-              <UserCreation></UserCreation>
-            </>
-          );
+          return <List />;
         }}
       </DataQuery>
     </DataProvider>
