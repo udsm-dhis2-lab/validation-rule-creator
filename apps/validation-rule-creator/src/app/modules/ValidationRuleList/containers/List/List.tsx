@@ -12,6 +12,7 @@ import {
   Button,
 } from '@dhis2/ui';
 import { useNavigate } from 'react-router-dom';
+import './List.css';
 
 /* eslint-disable-next-line */
 export interface ListProps {}
@@ -19,19 +20,21 @@ export interface ListProps {}
 export function List(props: ListProps) {
   const navigate = useNavigate();
   function onCreateValidation() {
-    console.log('create validation');
     navigate('create');
   }
   return (
     <>
-      <Button
-        name="Basic button"
-        onClick={onCreateValidation}
-        primary
-        value="default"
-      >
-        New validation
-      </Button>
+      <div className="list-header">
+        <h2>Validation rules</h2>
+        <Button
+          name="Basic button"
+          onClick={onCreateValidation}
+          primary
+          value="default"
+        >
+          Create validation
+        </Button>
+      </div>
       <Table>
         <TableHead>
           <TableRowHead>
