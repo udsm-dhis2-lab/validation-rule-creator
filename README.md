@@ -14,7 +14,9 @@ Libraries are shareable across libraries and applications. They can be imported 
 
 ## Development server
 
-Run `nx serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+Run `yarn start` or `npm start` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+
+**NOTE:** The app requires that you are proxying to a DHIS2 instance. You will have to provide appropriate configuration in `proxy-config.json` file. `proxy-config.example.json` has been put for your reference, make a copy and rename the copy to `proxy-config.json`
 
 ## Code scaffolding
 
@@ -22,17 +24,17 @@ Run `nx g @nrwl/react:component my-component --project=my-app` to generate a new
 
 ## Build
 
-Run `nx build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Run `yarn build` or `npm run build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
 ## Running unit tests
 
-Run `nx test my-app` to execute the unit tests via [Jest](https://jestjs.io).
+Run `yarn test` or `npm test` to execute the unit tests via [Jest](https://jestjs.io).
 
 Run `nx affected:test` to execute the unit tests affected by a change.
 
 ## Running end-to-end tests
 
-Run `ng e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
+Run `ng e2e validation-rule-creator` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
 
 Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
 
