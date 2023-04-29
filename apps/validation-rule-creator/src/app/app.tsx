@@ -2,7 +2,7 @@ import { DataProvider, DataQuery } from '@dhis2/app-runtime';
 import i18n from '@dhis2/d2-i18n';
 import React from 'react';
 
-import styles from './app.module.scss';
+import styles from './app.module.css';
 
 const query = {
   me: {
