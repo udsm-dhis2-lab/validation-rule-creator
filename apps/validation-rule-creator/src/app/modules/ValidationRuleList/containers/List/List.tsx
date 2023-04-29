@@ -7,15 +7,36 @@ import {
   TableBody,
   TableCell,
   TableRow,
-  TableFoot,
-  TableFooterButton,
   Button,
+  DataTableToolbar,
+  IconAdd24,
+  colors,
+  SingleSelectField,
+  InputField,
+  SingleSelectOption,
+  MultiSelectField,
+  MultiSelectOption,
+  CheckboxField,
+  DataTable,
+  DataTableRow,
+  DataTableColumnHeader,
+  DataTableCell,
+  TableFoot,
+  Pagination,
 } from '@dhis2/ui';
 import { useNavigate } from 'react-router-dom';
 import './List.css';
+import i18n from '@dhis2/d2-i18n';
+import { DataQuery } from '@dhis2/app-runtime';
 
 /* eslint-disable-next-line */
 export interface ListProps {}
+
+const query = {
+  validationRules: {
+    resource: 'validationRules',
+  },
+};
 
 export function List(props: ListProps) {
   const navigate = useNavigate();
@@ -23,135 +44,97 @@ export function List(props: ListProps) {
     navigate('create');
   }
   return (
-    <>
-      <div className="list-header">
-        <h2>Validation rules</h2>
-        <Button
-          name="Basic button"
-          onClick={onCreateValidation}
-          primary
-          value="default"
-        >
-          Create validation
-        </Button>
-      </div>
-      <Table>
-        <TableHead>
-          <TableRowHead>
-            <TableCellHead>First name</TableCellHead>
-            <TableCellHead>Last name</TableCellHead>
-            <TableCellHead>Incident date</TableCellHead>
-            <TableCellHead>Last updated</TableCellHead>
-            <TableCellHead>Age</TableCellHead>
-            <TableCellHead>Registering unit</TableCellHead>
-            <TableCellHead>Assigned user</TableCellHead>
-            <TableCellHead>Status</TableCellHead>
-          </TableRowHead>
-        </TableHead>
-        <TableBody>
-          <TableRow>
-            <TableCell>Onyekachukwu</TableCell>
-            <TableCell>Kariuki</TableCell>
-            <TableCell>02/06/2007</TableCell>
-            <TableCell>05/25/1972</TableCell>
-            <TableCell>66</TableCell>
-            <TableCell>Jawi</TableCell>
-            <TableCell>Sofie Hubert</TableCell>
-            <TableCell>Incomplete</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Kwasi</TableCell>
-            <TableCell>Okafor</TableCell>
-            <TableCell>08/11/2010</TableCell>
-            <TableCell>02/26/1991</TableCell>
-            <TableCell>38</TableCell>
-            <TableCell>Mokassie MCHP</TableCell>
-            <TableCell>Dashonte Clarke</TableCell>
-            <TableCell>Complete</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Siyabonga</TableCell>
-            <TableCell>Abiodun</TableCell>
-            <TableCell>07/21/1981</TableCell>
-            <TableCell>02/06/2007</TableCell>
-            <TableCell>98</TableCell>
-            <TableCell>Bathurst MCHP</TableCell>
-            <TableCell>Unassigned</TableCell>
-            <TableCell>Incomplete</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Chiyembekezo</TableCell>
-            <TableCell>Okeke</TableCell>
-            <TableCell>01/23/1982</TableCell>
-            <TableCell>07/15/2003</TableCell>
-            <TableCell>2</TableCell>
-            <TableCell>Mayolla MCHP</TableCell>
-            <TableCell>Wan Gengxin</TableCell>
-            <TableCell>Incomplete</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Mtendere</TableCell>
-            <TableCell>Afolayan</TableCell>
-            <TableCell>08/12/1994</TableCell>
-            <TableCell>05/12/1972</TableCell>
-            <TableCell>37</TableCell>
-            <TableCell>Gbangadu MCHP</TableCell>
-            <TableCell>Gvozden Boskovsky</TableCell>
-            <TableCell>Complete</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Inyene</TableCell>
-            <TableCell>Okonkwo</TableCell>
-            <TableCell>04/01/1971</TableCell>
-            <TableCell>03/16/2000</TableCell>
-            <TableCell>70</TableCell>
-            <TableCell>Kunike Barina</TableCell>
-            <TableCell>Oscar de la Cavallería</TableCell>
-            <TableCell>Complete</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Amaka</TableCell>
-            <TableCell>Pretorius</TableCell>
-            <TableCell>01/25/1996</TableCell>
-            <TableCell>09/15/1986</TableCell>
-            <TableCell>32</TableCell>
-            <TableCell>Bargbo</TableCell>
-            <TableCell>Alberto Raya</TableCell>
-            <TableCell>Incomplete</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Meti</TableCell>
-            <TableCell>Abiodun</TableCell>
-            <TableCell>10/24/2010</TableCell>
-            <TableCell>07/26/1989</TableCell>
-            <TableCell>8</TableCell>
-            <TableCell>Majihun MCHP</TableCell>
-            <TableCell>Unassigned</TableCell>
-            <TableCell>Complete</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Eshe</TableCell>
-            <TableCell>Okeke</TableCell>
-            <TableCell>01/31/1995</TableCell>
-            <TableCell>01/31/1995</TableCell>
-            <TableCell>63</TableCell>
-            <TableCell>Mambiama CHP</TableCell>
-            <TableCell>Shadrias Pearson</TableCell>
-            <TableCell>Incomplete</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Obi</TableCell>
-            <TableCell>Okafor</TableCell>
-            <TableCell>06/07/1990</TableCell>
-            <TableCell>01/03/2006</TableCell>
-            <TableCell>28</TableCell>
-            <TableCell>Dalakuru CHP</TableCell>
-            <TableCell>Anatoliy Shcherbatykh</TableCell>
-            <TableCell>Incomplete</TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-    </>
+    <DataQuery query={query}>
+      {({ loading, error, data, refetch }) => {
+        console.log(data);
+
+        return (
+          <>
+            <div className="list-header">
+              <h2>{i18n.t('Validation rule management')}</h2>
+            </div>
+            <div className="validation-filters">
+              <InputField
+                placeholder={i18n.t('Search by name or id')}
+                name="defaultName"
+                dense
+              />
+
+              <MultiSelectField
+                prefix={i18n.t('Select validation group')}
+                selected={['1']}
+                dense
+              >
+                <MultiSelectOption label="one" value="1" />
+                <MultiSelectOption label="two" value="2" />
+                <MultiSelectOption label="three" value="3" />
+                <MultiSelectOption label="four" value="4" />
+                <MultiSelectOption label="five" value="5" />
+                <MultiSelectOption label="six" value="6" />
+                <MultiSelectOption label="seven" value="7" />
+                <MultiSelectOption label="eight" value="8" />
+                <MultiSelectOption label="nine" value="9" />
+                <MultiSelectOption label="ten" value="10" />
+              </MultiSelectField>
+              <CheckboxField label={i18n.t('Show associated datasets')} dense />
+            </div>
+            <DataTableToolbar>
+              {' '}
+              <Button
+                small
+                icon={<IconAdd24 color={colors.grey600} />}
+                onClick={onCreateValidation}
+                rtrtvalue="default"
+              >
+                {i18n.t('New validation')}
+              </Button>
+            </DataTableToolbar>
+            <DataTable>
+              <TableHead>
+                <DataTableRow>
+                  <DataTableColumnHeader>First name</DataTableColumnHeader>
+                  <DataTableColumnHeader>Last name</DataTableColumnHeader>
+                  <DataTableColumnHeader>Incident date</DataTableColumnHeader>
+                  <DataTableColumnHeader>Last updated</DataTableColumnHeader>
+                </DataTableRow>
+              </TableHead>
+              <TableBody>
+                <DataTableRow>
+                  <DataTableCell>Onyekachukwu</DataTableCell>
+                  <DataTableCell>Kariuki</DataTableCell>
+                  <DataTableCell>02/06/2007</DataTableCell>
+                  <DataTableCell>05/25/1972</DataTableCell>
+                </DataTableRow>
+                <DataTableRow>
+                  <DataTableCell>Kwasi</DataTableCell>
+                  <DataTableCell>Okafor</DataTableCell>
+                  <DataTableCell>08/11/2010</DataTableCell>
+                  <DataTableCell>02/26/1991</DataTableCell>
+                </DataTableRow>
+                <DataTableRow>
+                  <DataTableCell>Siyabonga</DataTableCell>
+                  <DataTableCell>Abiodun</DataTableCell>
+                  <DataTableCell>07/21/1981</DataTableCell>
+                  <DataTableCell>02/06/2007</DataTableCell>
+                </DataTableRow>
+              </TableBody>
+              <TableFoot>
+                <DataTableRow>
+                  <DataTableCell colSpan="4">
+                    <Pagination
+                      page={10}
+                      pageCount={21}
+                      pageSize={50}
+                      total={1035}
+                    />
+                  </DataTableCell>
+                </DataTableRow>
+              </TableFoot>
+            </DataTable>
+          </>
+        );
+      }}
+    </DataQuery>
   );
 }
 

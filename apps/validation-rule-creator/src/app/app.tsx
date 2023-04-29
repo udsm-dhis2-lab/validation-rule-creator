@@ -16,19 +16,10 @@ const App = () => (
   <div className={styles.container}>
     <BrowserRouter>
       <DataProvider>
-        <DataQuery query={query}>
-          {({ error, loading, data }) => {
-            const me: any = data?.me;
-            if (error) return <span>ERROR</span>;
-            if (loading) return <span>...</span>;
-            return (
-              <Routes>
-                <Route exact path="/" element={<List />} />
-                <Route path="/create" element={<Create />} />
-              </Routes>
-            );
-          }}
-        </DataQuery>
+        <Routes>
+          <Route exact path="/" element={<List />} />
+          <Route path="/create" element={<Create />} />
+        </Routes>
       </DataProvider>
     </BrowserRouter>
   </div>
