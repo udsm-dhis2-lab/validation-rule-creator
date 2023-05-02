@@ -28,6 +28,7 @@ import { useNavigate } from 'react-router-dom';
 import './List.css';
 import i18n from '@dhis2/d2-i18n';
 import { DataQuery } from '@dhis2/app-runtime';
+import { ValidationRuleResponse } from '../../models';
 
 /* eslint-disable-next-line */
 export interface ListProps {}
@@ -35,6 +36,10 @@ export interface ListProps {}
 const query = {
   validationRules: {
     resource: 'validationRules',
+    params: () => ({
+      fields:
+        'id,name,displayName,description,instruction,importance,periodType,lastUpdated',
+    }),
   },
 };
 
@@ -46,7 +51,16 @@ export function List(props: ListProps) {
   return (
     <DataQuery query={query}>
       {({ loading, error, data, refetch }) => {
-        console.log(data);
+        if (!data) {
+          return <div>Loading</div>;
+        }
+
+        const validationRuleResponse = new ValidationRuleResponse(
+          data as Record<string, unknown>,
+          'validationRules'
+        );
+
+        console.log(validationRuleResponse);
 
         return (
           <>
@@ -92,31 +106,23 @@ export function List(props: ListProps) {
             <DataTable>
               <TableHead>
                 <DataTableRow>
-                  <DataTableColumnHeader>First name</DataTableColumnHeader>
-                  <DataTableColumnHeader>Last name</DataTableColumnHeader>
-                  <DataTableColumnHeader>Incident date</DataTableColumnHeader>
+                  <DataTableColumnHeader>Name</DataTableColumnHeader>
+                  <DataTableColumnHeader>Importance</DataTableColumnHeader>
+                  <DataTableColumnHeader>Period type</DataTableColumnHeader>
+                  <DataTableColumnHeader>Public access</DataTableColumnHeader>
                   <DataTableColumnHeader>Last updated</DataTableColumnHeader>
                 </DataTableRow>
               </TableHead>
               <TableBody>
-                <DataTableRow>
-                  <DataTableCell>Onyekachukwu</DataTableCell>
-                  <DataTableCell>Kariuki</DataTableCell>
-                  <DataTableCell>02/06/2007</DataTableCell>
-                  <DataTableCell>05/25/1972</DataTableCell>
-                </DataTableRow>
-                <DataTableRow>
-                  <DataTableCell>Kwasi</DataTableCell>
-                  <DataTableCell>Okafor</DataTableCell>
-                  <DataTableCell>08/11/2010</DataTableCell>
-                  <DataTableCell>02/26/1991</DataTableCell>
-                </DataTableRow>
-                <DataTableRow>
-                  <DataTableCell>Siyabonga</DataTableCell>
-                  <DataTableCell>Abiodun</DataTableCell>
-                  <DataTableCell>07/21/1981</DataTableCell>
-                  <DataTableCell>02/06/2007</DataTableCell>
-                </DataTableRow>
+                {validationRuleResponse.list.map((validationRule) => (
+                  <DataTableRow>
+                    <DataTableCell>{validationRule.name}</DataTableCell>
+                    <DataTableCell>{validationRule.importance}</DataTableCell>
+                    <DataTableCell>{validationRule.periodType}</DataTableCell>
+                    <DataTableCell>{validationRule.publicAccess}</DataTableCell>
+                    <DataTableCell>{validationRule.lastUpdated}</DataTableCell>
+                  </DataTableRow>
+                ))}
               </TableBody>
               <TableFoot>
                 <DataTableRow>
